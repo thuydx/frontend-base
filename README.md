@@ -1,2 +1,2 @@
 # frontend-base
-This is git repository template for the frontend projects based on the NextJS framework and CoreUI.
+This is a Git repository template for frontend projects based on Next.js and CoreUI.
