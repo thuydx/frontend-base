@@ -1,0 +1,58 @@
+{
+  "name": "@thuydx/frontend-base",
+  "version": "1.0.0",
+  "description": "Frontend Base",
+  "config": {
+    "theme": "modern",
+    "zipPrefix": ".zip/frontend-base"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:thuydx/frontend-base.git"
+  },
+  "license": "MIT",
+  "author": "ThuyDX",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "zip": "git archive -o $npm_package_config_zipPrefix-$npm_package_config_theme-v$npm_package_version.zip -9 HEAD"
+  },
+  "dependencies": {
+    "@coreui/chartjs": "^4.2.0",
+    "@coreui/coreui-pro": "^5.26.0",
+    "@coreui/icons": "^3.1.0",
+    "@coreui/icons-react": "^2.3.0",
+    "@coreui/react-chartjs": "^3.0.0",
+    "@coreui/react-pro": "^5.26.0",
+    "@coreui/utils": "^2.0.2",
+    "@fullcalendar/core": "^6.1.20",
+    "@fullcalendar/daygrid": "^6.1.20",
+    "@fullcalendar/interaction": "^6.1.20",
+    "@fullcalendar/react": "^6.1.20",
+    "@fullcalendar/timegrid": "^6.1.20",
+    "@react-google-maps/api": "^2.20.8",
+    "@reduxjs/toolkit": "^2.12.0",
+    "classnames": "^2.5.1",
+    "next": "16.2.9",
+    "react": "^19.2.7",
+    "react-dom": "19.2.7",
+    "react-redux": "^9.3.0",
+    "simplebar-react": "^3.3.2"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.29.7",
+    "@eslint/eslintrc": "^3.3.5",
+    "@types/node": "^25.9.3",
+    "@types/prop-types": "^15.7.15",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^10.5.0",
+    "eslint-config-next": "^16.2.9",
+    "next-transpile-modules": "^10.0.1",
+    "prop-types": "^15.8.1",
+    "sass": "^1.101.0",
+    "typescript": "^6.0.3"
+  }
+}

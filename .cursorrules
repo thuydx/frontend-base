@@ -1,0 +1,392 @@
+# Frontend Base
+
+You are working with the Frontend Base, a professional admin dashboard built with Next.js App Router, React 19, TypeScript, Redux Toolkit, Sass, and CoreUI React PRO components.
+
+This repository is both:
+
+- a reusable dashboard shell
+- a documentation/demo surface for CoreUI PRO components
+
+Your job is to make changes that fit those goals without breaking the project structure, visual consistency, or static export compatibility.
+
+## Critical Rules
+
+**Component Library**: ALWAYS use CoreUI React PRO components from `@coreui/react-pro` and styling from `@coreui/coreui-pro`. NEVER introduce Tailwind CSS, Material UI, Chakra UI, Ant Design, or other UI frameworks.
+
+**Framework Constraints**: This project uses Next.js App Router and file-based routing. Preserve the route-group structure under `src/app/`. Do not convert it into a generic React SPA pattern.
+
+**Static Export**: The project uses `output: 'export'` in `next.config.ts`. Avoid implementation choices that require server-side image optimization or server-only runtime behavior unless the project config is intentionally changed.
+
+**Shell Consistency**: The dashboard shell is built from `AppSidebar`, `AppHeader`, `AppFooter`, `AppAside`, and `AppBreadcrumb`. Changes to navigation or layout should stay consistent with this shell model.
+
+**CoreUI First**: Prefer CoreUI props, Bootstrap/CoreUI utility classes, and existing patterns before adding custom CSS or custom abstractions.
+
+## Technology Stack
+
+This project uses:
+
+- Next.js 16 with App Router
+- React 19 with functional components and hooks
+- TypeScript in strict mode
+- Redux Toolkit with React Redux
+- CoreUI React PRO 5.x and `@coreui/coreui-pro` 5.x
+- Sass/SCSS
+- FullCalendar 6.x
+- Google Maps integration
+- Chart.js integrations via CoreUI wrappers
+
+## Code Conventions
+
+**TypeScript Standards**:
+
+- Use strict TypeScript-friendly patterns.
+- Avoid `any` unless absolutely necessary.
+- Prefer explicit types for props, helper functions, and exported structures.
+- Use `.tsx` for files with JSX and `.ts` for non-JSX modules.
+- Keep types readable for IDEs and AI tools.
+- Add JSDoc where it improves architectural discoverability.
+
+**React Standards**:
+
+- Use functional components.
+- Use hooks at the top level only.
+- Add `'use client'` only where browser APIs, hooks, or event handlers require it.
+- Keep components focused and reasonably small.
+- Use cleanup functions for event listeners and subscriptions.
+- Use hydration-safe patterns when client-only state affects rendered output.
+
+**Formatting and Style**:
+
+- Follow the existing repository style.
+- Prefer small, coordinated changes over broad refactors.
+- Reuse neighboring page patterns when adding new docs/demo pages.
+- Keep prose and labels aligned with CoreUI docs language.
+
+## File Organization
+
+### Primary Source Directories
+
+- `src/app/`
+  Next.js App Router routes, layouts, loading states, and feature pages.
+- `src/components/`
+  Dashboard shell components and docs/demo helper components.
+- `src/store/`
+  Redux store configuration and typed selector helpers.
+- `src/styles/`
+  Global SCSS and example-only styling.
+- `public/`
+  Static images, brand assets, and demo resources.
+
+### Important Files
+
+- `src/app/layout.tsx`
+  Root layout with Redux provider, global styles, and theme bootstrap script.
+- `src/app/(views)/layout.tsx`
+  Shared dashboard shell layout.
+- `src/_nav.tsx`
+  Sidebar navigation source of truth.
+- `src/store/index.ts`
+  Shared shell/UI state.
+- `src/components/DocsComponents.tsx`
+  Banner linking to official docs.
+- `src/components/DocsExample.tsx`
+  Standard example wrapper for component demos.
+
+## Routing Conventions
+
+This project uses file-based routing through App Router.
+
+### Route Groups
+
+- `src/app/(views)/`
+  Main dashboard pages rendered inside the shared shell.
+- `src/app/(pages)/`
+  Standalone pages like login, register, and error pages.
+- `src/app/apps/`
+  Larger app-like areas such as email and invoicing.
+
+### Routing Rules
+
+- Add new pages as `page.tsx` files in the correct route segment.
+- Use `layout.tsx` only when a nested route group needs shared framing.
+- Remember that adding a route file does not automatically add sidebar navigation.
+- If a new page should be discoverable from the sidebar, update `src/_nav.tsx`.
+
+## Navigation Conventions
+
+The sidebar is manually configured in `src/_nav.tsx`.
+
+When adding or updating navigation:
+
+- keep naming consistent with neighboring items
+- preserve grouping under existing sections like `Base`, `Forms`, `Plugins`, and `Notifications`
+- add badges only when they match existing conventions such as `PRO`, `FREE`, or `NEW`
+- keep route paths aligned with page locations
+
+For AI tools, `src/_nav.tsx` should be treated as the human-facing navigation index for the app.
+
+## Dashboard Shell Conventions
+
+The main shell includes:
+
+- `AppSidebar`
+- `AppHeader`
+- `AppFooter`
+- `AppAside`
+- `AppBreadcrumb`
+
+When changing shell behavior:
+
+- inspect both the shell component and `src/app/(views)/layout.tsx`
+- keep Redux state keys aligned with the reducer payloads
+- preserve responsive behavior
+- avoid adding one-off shell logic directly to feature pages
+
+## State Management
+
+Redux is used for shared shell/UI state, not general application data fetching.
+
+### Current Shared State
+
+- `sidebarShow`
+- `sidebarUnfoldable`
+- `asideShow`
+- `theme`
+
+### Guidelines
+
+- Use Redux for layout-wide UI coordination.
+- Use local component state for page-level demos and form examples.
+- Do not move simple local demo state into Redux unnecessarily.
+- Reuse `useTypedSelector` for typed reads from the store.
+
+## Styling Conventions
+
+### Global Styling
+
+Use `src/styles/style.scss` for:
+
+- shell-level styling
+- global layout adjustments
+- CoreUI integration overrides
+
+### Example Styling
+
+Use `src/styles/examples.scss` only for:
+
+- docs/demo presentation polish
+- preview-specific layout tweaks
+
+Do not place foundational application styling in `examples.scss`.
+
+### Preferred Styling Order
+
+1. CoreUI component props
+2. Bootstrap/CoreUI utility classes
+3. Minimal custom SCSS
+
+### Styling Rules
+
+- Leverage existing CoreUI variables and color mode behavior.
+- Avoid custom CSS when a CoreUI prop already provides the intended variant.
+- Keep custom styles narrow and local in purpose.
+
+## Demo Page Conventions
+
+Many pages in this repository are documentation-style examples.
+
+When adding a new demo page:
+
+- use `DocsComponents` for official docs context where appropriate
+- use `DocsExample` to wrap rendered examples
+- explain the component briefly in a short paragraph
+- organize examples into `CCard` sections
+- keep examples realistic and focused
+
+### Good Demo Characteristics
+
+- easy to scan
+- minimal but representative
+- aligned with official CoreUI terminology
+- no unnecessary custom abstractions
+
+## Next.js-Specific Rules
+
+### Client Components
+
+Use `'use client'` only when needed for:
+
+- hooks
+- event handlers
+- browser APIs
+- Redux hooks in components
+
+Do not add `'use client'` to every file by default.
+
+### Static Export Constraints
+
+Because the project uses:
+
+```ts
+output: 'export'
+```
+
+you should:
+
+- avoid depending on server-only features for ordinary pages
+- be careful with `next/image` default optimization
+- prefer plain `<img>` for static demo content when needed
+- keep browser-only logic in client components
+
+### Hydration Safety
+
+If UI depends on client-derived values such as color mode:
+
+- guard the rendering until mounted when needed
+- follow the `AppHeader.tsx` pattern for hydration-sensitive rendering
+
+## Documentation and JSDoc
+
+JSDoc is valuable in this repository because it improves:
+
+- editor discoverability
+- architecture readability
+- AI assistant accuracy
+
+Good targets for JSDoc:
+
+- shell components
+- store modules
+- navigation config types
+- important layout files
+- non-obvious helper modules
+
+Prefer comments that explain:
+
+- responsibility
+- important inputs
+- return values
+- interaction with the rest of the shell
+
+Avoid comments that merely restate obvious JSX.
+
+## Common Patterns
+
+### Adding a New Demo Route
+
+1. Create `page.tsx` in the correct route folder.
+2. Add `'use client'` if needed.
+3. Use `@coreui/react-pro` components.
+4. Add `DocsComponents` and `DocsExample` if it is a docs/demo page.
+5. Update `src/_nav.tsx` if the page should appear in the sidebar.
+
+### Shell State Update
+
+Use the existing reducer pattern:
+
+```ts
+dispatch({ type: 'set', sidebarShow: false })
+```
+
+Do not introduce a more complex state model unless the change truly requires it.
+
+### Images in Demo Pages
+
+For static demo assets:
+
+- regular `<img>` is acceptable
+- imported static assets from `public/` are acceptable
+- avoid switching to `next/image` unless export compatibility is handled
+
+## PRO Components and Feature Areas
+
+Examples in this repository may include advanced CoreUI PRO components such as:
+
+- `CChip`
+- `CChipInput`
+- `CMultiSelect`
+- `CDatePicker`
+- `CDateRangePicker`
+- `COneTimePassword`
+- `CPasswordInput`
+- `CRating`
+- `CRangeSlider`
+- `CStepper`
+- `CSmartTable`
+- `CVirtualScroller`
+- `CLoadingButton`
+- `CCalendar`
+
+Plugins and larger integrations include:
+
+- charts
+- FullCalendar
+- Google Maps
+- email pages
+- invoicing pages
+
+These areas often need slightly more context gathering before editing.
+
+## AI Assistant Guidelines
+
+### What AI Should Do
+
+- Use CoreUI React PRO components and existing project patterns.
+- Follow the App Router structure already present in `src/app`.
+- Keep documentation/demo pages consistent with neighboring pages.
+- Update route files and sidebar config together when needed.
+- Add concise JSDoc when introducing important new modules or architectural changes.
+- Respect static export constraints and hydration concerns.
+- Prefer adapting nearby code over inventing a parallel pattern.
+
+### What AI Should Not Do
+
+- Do not introduce alternative UI libraries.
+- Do not rewrite App Router structure into a React Router mental model.
+- Do not add unnecessary global CSS for a narrow demo need.
+- Do not use `next/image` blindly in export mode.
+- Do not place layout-wide logic directly in random feature pages.
+- Do not expand Redux usage for simple local state.
+- Do not ignore the difference between `(views)` and `(pages)` route groups.
+
+## External Dependencies
+
+### Core Libraries
+
+- `next` - App framework and routing
+- `react` / `react-dom` - UI runtime
+- `typescript` - static typing
+- `@coreui/react-pro` - UI components
+- `@coreui/coreui-pro` - SCSS and design system styling
+- `@reduxjs/toolkit` - store configuration
+- `react-redux` - React bindings for Redux
+
+### Additional Libraries
+
+- `@coreui/react-chartjs`
+- `@coreui/chartjs`
+- `@fullcalendar/core`
+- `@fullcalendar/react`
+- `@fullcalendar/daygrid`
+- `@fullcalendar/timegrid`
+- `@fullcalendar/interaction`
+- `@react-google-maps/api`
+- `classnames`
+- `simplebar-react`
+
+## Browser and Platform Expectations
+
+The project targets modern browsers and a modern React/Next.js toolchain. Changes should assume current browser capabilities and modern ECMAScript support.
+
+## Resources
+
+- CoreUI React PRO Documentation: https://coreui.io/react/docs/
+- CoreUI React Components: https://coreui.io/react/docs/components/
+- Next.js Documentation: https://nextjs.org/docs
+- React Documentation: https://react.dev/
+- TypeScript Documentation: https://www.typescriptlang.org/docs/
+- Redux Toolkit Documentation: https://redux-toolkit.js.org/
+
+---
+
+Remember: this is a Next.js App Router project built on CoreUI React PRO and configured for static export. Keep changes consistent with the dashboard shell, the docs/demo structure, and export-safe rendering patterns.
