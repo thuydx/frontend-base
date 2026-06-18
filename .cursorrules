@@ -17,7 +17,7 @@ Your job is to make changes that fit those goals without breaking the project st
 
 **Static Export**: The project uses `output: 'export'` in `next.config.ts`. Avoid implementation choices that require server-side image optimization or server-only runtime behavior unless the project config is intentionally changed.
 
-**Shell Consistency**: The dashboard shell is built from `AppSidebar`, `AppHeader`, `AppFooter`, `AppAside`, and `AppBreadcrumb`. Changes to navigation or layout should stay consistent with this shell model.
+**Shell Consistency**: The dashboard shell is built from `BeSidebar`, `BeHeader`, `BeFooter`, `AppAside`, and `Breadcrumb`. Changes to navigation or layout should stay consistent with this shell model.
 
 **CoreUI First**: Prefer CoreUI props, Bootstrap/CoreUI utility classes, and existing patterns before adding custom CSS or custom abstractions.
 
@@ -84,7 +84,7 @@ This project uses:
 - `src/app/(views)/layout.tsx`
   Shared dashboard shell layout.
 - `src/_nav.tsx`
-  Sidebar navigation source of truth.
+  BeSidebar navigation source of truth.
 - `src/store/index.ts`
   Shared shell/UI state.
 - `src/components/DocsComponents.tsx`
@@ -129,11 +129,11 @@ For AI tools, `src/_nav.tsx` should be treated as the human-facing navigation in
 
 The main shell includes:
 
-- `AppSidebar`
-- `AppHeader`
-- `AppFooter`
+- `BeSidebar`
+- `BeHeader`
+- `BeFooter`
 - `AppAside`
-- `AppBreadcrumb`
+- `Breadcrumb`
 
 When changing shell behavior:
 
@@ -243,7 +243,7 @@ you should:
 If UI depends on client-derived values such as color mode:
 
 - guard the rendering until mounted when needed
-- follow the `AppHeader.tsx` pattern for hydration-sensitive rendering
+- follow the `BeHeader.tsx` pattern for hydration-sensitive rendering
 
 ## Documentation and JSDoc
 

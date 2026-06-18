@@ -89,11 +89,11 @@ This creates a clean split between:
 
 The shell itself is composed from reusable components in `src/components`:
 
-- `AppSidebar`
-- `AppHeader`
-- `AppFooter`
+- `BeSidebar`
+- `BeHeader`
+- `BeFooter`
 - `AppAside`
-- `AppBreadcrumb`
+- `Breadcrumb`
 
 ## Directory Structure
 
@@ -110,12 +110,12 @@ coreui-pro-next-js-admin-template/
 │   │   └── layout.tsx
 │   ├── components/
 │   │   ├── header/
-│   │   ├── AppAside.tsx
-│   │   ├── AppBreadcrumb.tsx
-│   │   ├── AppFooter.tsx
-│   │   ├── AppHeader.tsx
-│   │   ├── AppSidebar.tsx
-│   │   ├── AppSidebarNav.tsx
+│   │   ├── BeAside.tsx
+│   │   ├── BeBreadcrumb.tsx
+│   │   ├── BeFooter.tsx
+│   │   ├── BeHeader.tsx
+│   │   ├── BeSidebar.tsx
+│   │   ├── BeSidebarNav.tsx
 │   │   ├── DocsComponents.tsx
 │   │   ├── DocsExample.tsx
 │   │   └── DocsIcons.tsx
@@ -159,7 +159,7 @@ The project uses Next.js App Router, so routing is defined by folders and files 
 
 ### Navigation Source of Truth
 
-Sidebar navigation is configured manually in `src/_nav.tsx`. This file is not automatically derived from the file tree, so route additions usually require two coordinated changes:
+BeSidebar navigation is configured manually in `src/_nav.tsx`. This file is not automatically derived from the file tree, so route additions usually require two coordinated changes:
 
 1. add the page under `src/app/...`
 2. add the corresponding nav item in `src/_nav.tsx`
@@ -183,10 +183,10 @@ The root layout is client-rendered because it uses the Redux provider and browse
 
 `src/app/(views)/layout.tsx` builds the main shell:
 
-- `AppSidebar`
-- `AppHeader`
+- `BeSidebar`
+- `BeHeader`
 - central content wrapper with `CContainer`
-- `AppFooter`
+- `BeFooter`
 - `AppAside`
 
 This is the layout most feature work plugs into.

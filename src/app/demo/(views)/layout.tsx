@@ -1,6 +1,6 @@
 'use client'
 
-import { BeAside, BeSidebar, BeFooter, BeHeader, BeBreadcrumb } from '@/components/layouts/be'
+import { AppAside, AppSidebar, AppFooter, AppHeader, AppBreadcrumb } from '@/components/demo'
 import { CContainer } from '@coreui/react-pro'
 
 /**
@@ -15,18 +15,18 @@ import { CContainer } from '@coreui/react-pro'
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <BeSidebar />
+      <AppSidebar />
       <div className="wrapper d-flex flex-column min-vh-100">
-        <BeHeader />
+        <AppHeader />
         <div className="body flex-grow-1">
           <CContainer lg className="px-4">
-            <BeBreadcrumb />
+            <AppBreadcrumb />
             {children}
           </CContainer>
         </div>
-        <BeFooter />
+        <AppFooter />
       </div>
-      <BeAside />
+      <AppAside />
     </>
   )
 }

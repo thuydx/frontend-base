@@ -85,7 +85,7 @@ src/
 ├── components/           # Reusable shell and docs components
 ├── store/                # Redux store and typed selector
 ├── styles/               # Global and example SCSS
-├── _nav.tsx              # Sidebar navigation config
+├── _nav.tsx              # BeSidebar navigation config
 ├── _data.ts              # Shared sample data
 └── _nav.tsx              # Navigation source
 ```
@@ -96,14 +96,14 @@ src/
   Root layout with Redux provider, global style imports, and theme bootstrap script.
 - `src/app/(views)/layout.tsx`
   Shared dashboard shell.
-- `src/components/AppHeader.tsx`
-  Header, theme switcher, dropdowns, breadcrumb integration.
-- `src/components/AppSidebar.tsx`
-  Sidebar chrome and navigation entry point.
+- `src/components/BeHeader.tsx`
+  BeHeader, theme switcher, dropdowns, beBreadcrumb integration.
+- `src/components/BeSidebar.tsx`
+  BeSidebar chrome and navigation entry point.
 - `src/store/index.ts`
   Shared UI state for shell behavior.
 - `src/_nav.tsx`
-  Sidebar navigation configuration.
+  BeSidebar navigation configuration.
 
 ## Working with Routes
 
@@ -283,7 +283,7 @@ This affects implementation choices.
 
 ### Hydration-Safe Theme Controls
 
-If UI depends on client-only state such as color mode, guard rendering until mounted. `AppHeader.tsx` is the reference pattern here.
+If UI depends on client-only state such as color mode, guard rendering until mounted. `BeHeader.tsx` is the reference pattern here.
 
 ### Dashboard Shell Changes
 
@@ -291,7 +291,7 @@ If a change affects:
 
 - header
 - sidebar
-- breadcrumb
+- beBreadcrumb
 - footer
 - aside
 
@@ -311,7 +311,7 @@ If you see an error related to `Image Optimization using the default loader is n
 - configure images as unoptimized in Next config
 - avoid `next/image` unless there is a real need for it
 
-### Sidebar or Theme Not Updating
+### BeSidebar or Theme Not Updating
 
 Check:
 
